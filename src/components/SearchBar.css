@@ -1,0 +1,156 @@
+.search-and-suggestions-wrapper {
+    position: relative;
+    width: 80%;
+    max-width: 600px;
+    margin-top: 20px;
+}
+
+.search-bar {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: white;
+}
+
+
+.input-container {
+    position: relative;
+    flex: 1; 
+    min-width: 200px;
+    height: 50px;
+    box-sizing: border-box; 
+}
+
+.search-bar input {
+    color: white;
+    padding-left: 12px; 
+    box-sizing: border-box; 
+    width: 100%; 
+    height: 50px;
+    border-radius: 30px;
+    background-color: rgba(15, 14, 14, 0.441);
+    border: none;
+    text-align: left;
+}
+
+.search-bar input:focus {
+    outline: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.498);
+}
+
+.search-bar button {
+    color: white;
+    width: 50px;
+    min-width: 50px;
+    height: 50px;
+    border-radius: 30px;
+    border: none;
+    background-color: rgba(15, 14, 14, 0.441);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.search-bar button:hover {
+    background-color: rgba(0, 0, 0, 0.283);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+}
+
+.suggestions-list {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding: 0 12px; 
+    
+    background: rgba(255, 255, 255, 0.445);
+    list-style: none;
+    margin: 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+}
+
+.suggestions-list li {
+
+    padding: 10px 0; 
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.suggestions-list li:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+    .search-and-suggestions-wrapper {
+        width: 90%;
+        margin-top: 15px;
+    }
+    
+    .search-bar {
+        height: 45px;
+    }
+
+    .input-container {
+        height: 45px;
+        min-width: 150px;
+    }
+
+    .search-bar input {
+        font-size: 0.95rem;
+        height: 45px;
+        padding-left: 10px;
+    }
+
+    .suggestions-list {
+        padding: 0 10px; 
+    }
+
+    .search-bar button {
+        width: 45px;
+        min-width: 45px;
+        height: 45px;
+    }
+}
+
+@media (max-width: 480px) {
+    .search-and-suggestions-wrapper {
+        width: 95%;
+        margin-top: 15px;
+    }
+    
+    .search-bar {
+        gap: 6px;
+        height: 42px;
+    }
+    
+    .input-container {
+        height: 42px;
+        min-width: 120px;
+    }
+
+    .search-bar input {
+        font-size: 0.9rem;
+        height: 42px;
+        padding-left: 8px;
+    }
+
+    .suggestions-list {
+        padding: 0 8px; 
+    }
+
+    .search-bar button {
+        width: 42px;
+        min-width: 42px;
+        height: 42px;
+    }
+}

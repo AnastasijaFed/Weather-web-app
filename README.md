@@ -1,16 +1,54 @@
-# React + Vite
+# 🌤 Weather App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive **Weather Forecast Web App** built with **React**, featuring:
+- 🌈 Animated aurora background
+- 🔍 Real-time search with city suggestions
+- 📊 Current weather + forecast + details
+- 📱 Fully responsive design
+- ☁️ Powered by OpenWeather API
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🖼 Preview
 
-## React Compiler
+<img width="1440" height="812" alt="Screenshot 2025-10-11 at 20 36 32" src="https://github.com/user-attachments/assets/eb9ee6a4-e07d-4533-b7a2-576793fedf6c" />
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## ✨ Features
+
+- 🔥 **Aurora background animation** for a smooth, dynamic UI  
+- 🌍 **Search for any city** — auto-suggestions appear as you type  
+- 🗺 **Google Maps API integration** to improve location accuracy and enhance search suggestions  
+- 🌡 **Displays:**
+  - Current temperature & weather
+  - Feels like, humidity, wind speed, and more
+  - 5-day forecast
+- 🧭 **Responsive UI** — works seamlessly on desktop, tablet, and mobile
+- ⚡ Built with React functional components + hooks
+
+---
+
+## 🛠️ Tech Stack
+
+- [React](https://react.dev/)
+- [Vite](https://vitejs.dev/)
+- [Google Maps API (Places Autocomplete)](https://developers.google.com/maps/documentation/javascript/places)
+- [OpenWeather API](https://openweathermap.org/api)
+- [Bootstrap Icons](https://icons.getbootstrap.com/)
+- CSS3 (Flexbox + Media Queries)
+
+---
+
+##🧭 Future Enhancements
+
+🌐 Geolocation-based weather on load
+🕓 Hourly forecast
+🧊 Dark/Light mode toggle
+📍 Saved locations / favorites
+
+##Author
+👨‍💻 Anastasija Fedorenko
+ • www.linkedin.com/in/anastasija-fedorenko
+

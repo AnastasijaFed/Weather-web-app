@@ -132,6 +132,7 @@ html, body {
     width: 90%;
     padding: 10px;
     height: 30%;
+ 
   }
 
   .details {
@@ -139,6 +140,6 @@ html, body {
     height: 70%;
     margin-top: 20px;
     padding: 10px;
-    height: 50%;
+    
   }
 }

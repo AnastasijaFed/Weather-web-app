@@ -44,6 +44,7 @@
 @media (max-width: 768px) {
   .forecast-container{
     width: 100%;
+    height: 100%;
   }
   .forecast-day{
     width: 100%;

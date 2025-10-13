@@ -97,7 +97,7 @@ const SearchBar = ({ onSearch }) => {
         )}
       </div> 
       
-      <button type="submit">Search</button>
+      <button type="submit"><i class="bi bi-search"></i></button>
     </form>
   </div>
 </div>

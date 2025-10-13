@@ -53,6 +53,6 @@
 @media (max-width: 480px){
   .forecast-container{
     height: auto;
-    width: 90%;
+    width: 100%;
   }
 }

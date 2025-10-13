@@ -112,6 +112,7 @@ const DetailsCard = ({ city }) => {
           forecastData.map((item) => {
             const time = new Date(item.dt * 1000).toLocaleTimeString([], {
               hour: '2-digit',
+              hour12:false
             });
             const temp = Math.round(item.main.temp);
             const icon = allIcons[item.weather[0].icon];

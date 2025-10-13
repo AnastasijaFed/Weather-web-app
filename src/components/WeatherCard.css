@@ -1,3 +1,4 @@
+/* 🌤️ Main container */
 .weather-info {
   display: flex;
   flex-direction: column;
@@ -6,19 +7,38 @@
   gap: 20px;
   color: white;
   width: 100%;
+  max-width: 100%;
   padding: 1rem;
+  margin: 0 auto;
   text-align: center;
+  box-sizing: border-box;
+  overflow: hidden; /* prevents horizontal scroll on mobile */
 }
 
+/* 🏙️ City name */
 .weather-city {
-  font-size: 4rem;
+  /* 👇 fluid font sizing that adapts to screen size */
+  font-size: clamp(1.8rem, 8vw, 4rem);
   color: white;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 90vw;
+  font-weight: 400;
+
+  /* wrapping for long city names */
+  white-space: normal !important;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  overflow: visible;
+  text-overflow: unset;
+
+  max-width: 90vw; /* keep it inside screen */
+  width: 100%;
+  min-width: 0;
+
+  text-align: center;
+  margin: 0;
+  padding: 0 0.5rem;
 }
 
+/* 🌡️ Weather details row */
 .weather-details {
   display: flex;
   flex-direction: row;
@@ -26,53 +46,44 @@
   align-items: center;
   gap: 20px;
   flex-wrap: wrap;
+  min-width: 0;
 }
 
+/* ☁️ Icon */
 .weather-icon {
-  width: 100px;
-  height: 100px;
+  width: clamp(60px, 12vw, 100px);
+  height: clamp(60px, 12vw, 100px);
+  flex-shrink: 0;
 }
 
+/* 🌡️ Temperature */
 .weather-temp {
-  font-size: 2.5rem;
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
   color: white;
+  text-align: center;
 }
 
-
+/* 📱 Tablet Breakpoint */
 @media (max-width: 768px) {
-  .weather-city {
-    font-size: 3rem;
-    flex-wrap: wrap;
-  }
-
-  .weather-icon {
-    width: 80px;
-    height: 80px;
-  }
-
-  .weather-temp {
-    font-size: 2rem;
+  .weather-details {
+    gap: 15px;
   }
 }
 
+/* 📱 Mobile Breakpoint */
 @media (max-width: 480px) {
-  .weather-city {
-    font-size: 2.2rem;
-    white-space: normal;
-    flex-wrap: wrap;
+  .weather-info {
+    margin: 0 auto;
+    padding: 1rem;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
   }
 
   .weather-details {
     flex-direction: column;
     gap: 10px;
-  }
-
-  .weather-icon {
-    width: 60px;
-    height: 60px;
-  }
-
-  .weather-temp {
-    font-size: 1.8rem;
+    justify-content: center;
+    align-items: center;
   }
 }

@@ -46,14 +46,14 @@ https://anastasija-weather-app.netlify.app/
 
 ---
 
-##🧭 Future Enhancements
+## 🧭 Future Enhancements
 
 🌐 Geolocation-based weather on load
 🕓 Hourly forecast
 🧊 Dark/Light mode toggle
 📍 Saved locations / favorites
 
-##Author
+## Author
 👨‍💻 Anastasija Fedorenko
  • www.linkedin.com/in/anastasija-fedorenko
 

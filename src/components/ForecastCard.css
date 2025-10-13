@@ -4,7 +4,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Nunito", sans-serif;
-  width: 40%;
+
 }
 
 .forecast-container {
@@ -14,7 +14,7 @@
   align-items: center;
   width: 90%;
   max-width: 900px;
-  margin: auto;
+  margin: 0 auto; 
   background-color: rgba(25, 25, 30, 0.8);
   border-radius: 20px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
@@ -43,7 +43,7 @@
 
 @media (max-width: 768px) {
   .forecast-container{
-    width: 100%;
+     max-width: 900px;
     height: auto;
   }
   .forecast-day{
@@ -53,6 +53,6 @@
 @media (max-width: 480px){
   .forecast-container{
     height: auto;
-    width: auto;
+    width: 90%;
   }
 }

@@ -1,14 +1,17 @@
-import React, { use, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useWeatherData from '../hooks/useWeatherData';
 import { allIcons } from '../utils/weatherIcons';
+import '../components/WeatherCard.css';
 
 const WeatherCard = ({ city }) => {
+  // Fetch weather data using custom hook
   const data = useWeatherData(city);
   const [weatherData, setWeatherData] = useState(false);
 
+  // Update local state when new data is fetched
   useEffect(() => {
     if (data) {
-      console.log(data);
+      console.log(data); // For debugging, can be removed in production
 
       setWeatherData({
         city: data.name,
@@ -18,14 +21,16 @@ const WeatherCard = ({ city }) => {
     }
   }, [data]);
 
+  // Render nothing if data is not yet available
   if (!weatherData) return null;
+
   return (
     <div className="weather-info">
+      {/* City name */}
       <h2
         style={{
-          fontSize: '4rem',
+          fontSize: '3rem',
           color: 'white',
-          whiteSpace: 'nowrap',
           maxWidth: '90vw',
           textAlign: 'center',
         }}
@@ -33,24 +38,16 @@ const WeatherCard = ({ city }) => {
         {weatherData.city}
       </h2>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'center',
-          alignItems: 'center',
-          gap: '20px',
-          width: '100%',
-        }}
-      >
+      {/* Weather icon and temperature */}
+      <div className="weather-details">
         {weatherData.icon && (
-          <img
+          <img 
             src={weatherData.icon}
             alt="Weather Icon"
             style={{ width: '100px', height: '100px' }}
           />
         )}
-        <p style={{ fontSize: '2.5rem', color: 'white' }}>
+        <p style={{ fontSize: '2.5rem', color: 'white', whiteSpace: 'nowrap' }}>
           {weatherData.temperature}°C
         </p>
       </div>

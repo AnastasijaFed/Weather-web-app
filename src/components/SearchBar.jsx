@@ -1,13 +1,13 @@
-import React, { useEffect, useState, useMemo, useRef} from 'react';
+import React, { useEffect, useState, useMemo, useRef } from 'react';
 import debounce from 'lodash.debounce';
 import './SearchBar.css';
 
 const SearchBar = ({ onSearch }) => {
-  const [input, setInput] = useState('');
-  const [suggestions, setSuggestions] = useState([]);
-  const suggestionsRef = useRef(null);
+  const [input, setInput] = useState(''); // Input value
+  const [suggestions, setSuggestions] = useState([]); // City suggestions
+  const suggestionsRef = useRef(null); // Ref for detecting clicks outside suggestions
 
-
+  // Fetch city suggestions from GeoDB API
   const fetchCities = async (value) => {
     try {
       const response = await fetch(
@@ -23,29 +23,32 @@ const SearchBar = ({ onSearch }) => {
 
       if (!response.ok) throw new Error(`API error: ${response.status}`);
       const data = await response.json();
-      console.log(data);
+      console.log(data); // Debugging
       setSuggestions(data.data);
     } catch (error) {
       console.error('Error fetching city suggestions:', error);
     }
   };
 
-
+  // Debounced fetch to limit API calls
   const debouncedFetch = useMemo(() => debounce(fetchCities, 500), []);
 
+  // Handle input changes
   const handleChange = (e) => {
     const value = e.target.value;
     setInput(value);
-    if (value.length > 2) debouncedFetch(value);
-    else setSuggestions([]);
+    if (value.length > 2) debouncedFetch(value); // Fetch if input is long enough
+    else setSuggestions([]); // Clear suggestions if input is short
   };
 
+  // Handle selecting a suggestion
   const handleSelect = (cityName) => {
     onSearch(cityName);
     setInput(cityName);
     setSuggestions([]);
   };
 
+  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
     if (input.trim()) {
@@ -53,6 +56,8 @@ const SearchBar = ({ onSearch }) => {
       setSuggestions([]);
     }
   };
+
+  // Close suggestions dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -69,39 +74,38 @@ const SearchBar = ({ onSearch }) => {
     };
   }, []);
 
-
   return (
-
     <div className="nav-bar">
-  <div className="search-and-suggestions-wrapper">
-    <form className="search-bar" onSubmit={handleSubmit}>
-     
-      <div className="input-container"> 
-        <input
-          type="text"
-          placeholder="Enter city"
-          value={input}
-          onChange={handleChange}
-        />
-        {suggestions.length > 0 && (
-          <ul className="suggestions-list" ref={suggestionsRef}>
-            {suggestions.map((city) => (
-              <li
-                key={city.id}
-                onClick={() => handleSelect(`${city.name}, ${city.countryCode}`)}
-              >
-                {city.name}, {city.countryCode}
-              </li>
-            ))}
-          </ul>
-        )}
-      </div> 
-      
-      <button type="submit"><i class="bi bi-search"></i></button>
-    </form>
-  </div>
-</div>
-    
+      <div className="search-and-suggestions-wrapper">
+        <form className="search-bar" onSubmit={handleSubmit}>
+          <div className="input-container"> 
+            <input
+              type="text"
+              placeholder="Enter city"
+              value={input}
+              onChange={handleChange}
+            />
+            {/* Suggestions dropdown */}
+            {suggestions.length > 0 && (
+              <ul className="suggestions-list" ref={suggestionsRef}>
+                {suggestions.map((city) => (
+                  <li
+                    key={city.id}
+                    onClick={() => handleSelect(`${city.name}, ${city.countryCode}`)}
+                  >
+                    {city.name}, {city.countryCode}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div> 
+          
+          <button type="submit">
+            <i className="bi bi-search"></i>
+          </button>
+        </form>
+      </div>
+    </div>
   );
 };
 

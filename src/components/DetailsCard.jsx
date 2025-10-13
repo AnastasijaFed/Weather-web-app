@@ -3,9 +3,10 @@ import './DetailsCard.css';
 import { allIcons } from '../utils/weatherIcons';
 
 const DetailsCard = ({ city }) => {
-  const [forecastData, setForecastData] = React.useState([]);
-  const [weatherData, setWeatherData] = React.useState(null);
+  const [forecastData, setForecastData] = React.useState([]); // Holds hourly forecast data
+  const [weatherData, setWeatherData] = React.useState(null); // Holds current weather details
 
+  // Fetch current weather and short-term forecast whenever the city changes
   React.useEffect(() => {
     if (!city) return;
 
@@ -23,7 +24,7 @@ const DetailsCard = ({ city }) => {
           Array.isArray(json.list) &&
           json.list.length > 0
         ) {
-          const data = json.list.slice(0, 8);
+          const data = json.list.slice(0, 8); // Take first 8 entries (~24h)
           setForecastData(data);
 
           const current = data[0];
@@ -36,7 +37,7 @@ const DetailsCard = ({ city }) => {
               humidity: current.main.humidity,
               windSpeed: current.wind.speed,
               icon: allIcons[current.weather[0].icon],
-              coord: json.city.coord,
+              coord: json.city.coord, // For map display
             });
           }
         } else {
@@ -58,34 +59,36 @@ const DetailsCard = ({ city }) => {
         <div className="left-column">
           {weatherData ? (
             <>
-              <p
-                className="condition"
-                style={{ color: 'gray', fontWeight: 100 }}
-              >
+              {/* Weather condition and feels like */}
+              <p className="condition" style={{ color: 'gray', fontWeight: 100 }}>
                 {weatherData.condition}
               </p>
               <p style={{ fontSize: '1.25rem' }}>
-                Feels like: {Math.round(weatherData.feelsLike)}°C{' '}
+                Feels like: {Math.round(weatherData.feelsLike)}°C
               </p>
+
+              {/* High/Low temperature */}
               <div className="temp-range">
                 <p style={{ color: '#bbbbbb', fontSize: '1rem' }}>
-                  H: {Math.round(weatherData.tempMax)}°C{' '}
-                  <i className="bi bi-thermometer-high"></i>
+                  H: {Math.round(weatherData.tempMax)}°C <i className="bi bi-thermometer-high"></i>
                 </p>
                 <p style={{ color: '#bbbbbb', fontSize: '1rem' }}>
-                  L: {Math.round(weatherData.tempMin)}°C{' '}
-                  <i className="bi bi-thermometer-low"></i>
+                  L: {Math.round(weatherData.tempMin)}°C <i className="bi bi-thermometer-low"></i>
                 </p>
               </div>
+
+              {/* Humidity and wind speed */}
               <div className="additional-info">
-                <p>Humidity: {weatherData.humidity}% </p>
-                <p> Wind: {weatherData.windSpeed} m/s </p>
+                <p>Humidity: {weatherData.humidity}%</p>
+                <p>Wind: {weatherData.windSpeed} m/s</p>
               </div>
             </>
           ) : (
             <p className="loading">Loading current weather...</p>
           )}
         </div>
+
+        {/* Map showing city location */}
         <div className="right-column">
           {weatherData && weatherData.coord ? (
             <iframe
@@ -97,9 +100,7 @@ const DetailsCard = ({ city }) => {
               allowFullScreen
               src={`https://www.google.com/maps/embed/v1/view?key=${
                 import.meta.env.VITE_MAPS_KEY
-              }&center=${weatherData.coord.lat},${
-                weatherData.coord.lon
-              }&zoom=10`}
+              }&center=${weatherData.coord.lat},${weatherData.coord.lon}&zoom=10`}
             ></iframe>
           ) : (
             <p style={{ color: 'white' }}>Loading map...</p>
@@ -107,12 +108,13 @@ const DetailsCard = ({ city }) => {
         </div>
       </div>
 
+      {/* Timeline showing hourly forecast */}
       <div className="timeline">
         {forecastData.length > 0 ? (
           forecastData.map((item) => {
             const time = new Date(item.dt * 1000).toLocaleTimeString([], {
               hour: '2-digit',
-              hour12:false
+              hour12: false,
             });
             const temp = Math.round(item.main.temp);
             const icon = allIcons[item.weather[0].icon];
